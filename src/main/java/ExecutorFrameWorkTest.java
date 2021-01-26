@@ -89,7 +89,9 @@ public class ExecutorFrameWorkTest{
     OddThread odd = new OddThread("Odd",20,atomicInteger,obj);
     Thread evenThread = new Thread(even);
     Thread oddThread = new Thread(odd);
-    evenThread.start();
-    oddThread.start();
+    ExecutorService exec = Executors.newFixedThreadPool(2);
+    exec.execute(evenThread);
+    exec.execute(oddThread);
+    exec.shutdown();
   }
 }
